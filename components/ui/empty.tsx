@@ -2,7 +2,39 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
-function Empty({ className, ...props }: React.ComponentProps<'div'>) {
+interface EmptyProps extends React.ComponentProps<'div'> {
+  icon?: React.ReactNode
+  title?: string
+  description?: string
+}
+
+function Empty({ className, icon, title, description, children, ...props }: EmptyProps) {
+  // If using shorthand props (icon, title, description)
+  if (icon || title || description) {
+    return (
+      <div
+        data-slot="empty"
+        className={cn(
+          'flex min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-dashed p-6 text-center text-balance md:p-12',
+          className,
+        )}
+        {...props}
+      >
+        {icon && (
+          <div className="flex shrink-0 items-center justify-center text-muted-foreground">
+            {icon}
+          </div>
+        )}
+        {title && <div className="text-lg font-medium tracking-tight">{title}</div>}
+        {description && (
+          <p className="text-sm text-muted-foreground max-w-sm">{description}</p>
+        )}
+        {children}
+      </div>
+    )
+  }
+
+  // Default composition-based usage
   return (
     <div
       data-slot="empty"
@@ -11,7 +43,9 @@ function Empty({ className, ...props }: React.ComponentProps<'div'>) {
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 

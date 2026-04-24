@@ -94,8 +94,8 @@ export function AlertsPanel({ open, onOpenChange, alerts, games, onAlertAcknowle
               const game = getGame(alert.game_id)
               if (!game) return null
 
-              const homeTeam = getTeamInfo(game.home_team, game.sport)
-              const awayTeam = getTeamInfo(game.away_team, game.sport)
+              const homeTeam = getTeamInfo(game.home_team)
+              const awayTeam = getTeamInfo(game.away_team)
 
               return (
                 <div
@@ -131,7 +131,7 @@ export function AlertsPanel({ open, onOpenChange, alerts, games, onAlertAcknowle
                         </span>
                       </div>
                       <p className="text-sm font-medium">
-                        {awayTeam.short} @ {homeTeam.short}
+                        {awayTeam.abbreviation} @ {homeTeam.abbreviation}
                       </p>
                       <p className="text-sm text-muted-foreground mt-1">
                         {alert.message}

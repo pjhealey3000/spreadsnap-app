@@ -29,16 +29,21 @@ function createMockProvider(): OddsProvider {
   return {
     name: 'mock',
     
-    async getGames(sport) {
+    async getGames() {
       // Return empty - we use seeded DB data in dev
       return []
     },
     
-    async getLiveScores(sport) {
+    async getUpcomingGames() {
+      // Alias for getGames
       return []
     },
     
-    async getOpeningSpread(gameId) {
+    async getLiveScores() {
+      return []
+    },
+    
+    async getOpeningSpread() {
       return null
     },
   }
