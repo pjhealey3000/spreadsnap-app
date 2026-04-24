@@ -20,6 +20,9 @@ export interface OddsProvider {
   // Fetch upcoming and live games
   getGames(sport: 'nba' | 'nfl'): Promise<OddsGame[]>
   
+  // Alias for getGames (used by sync-odds route)
+  getUpcomingGames(sport: 'nba' | 'nfl'): Promise<OddsGame[]>
+  
   // Fetch live scores for active games
   getLiveScores(sport: 'nba' | 'nfl'): Promise<OddsGame[]>
   

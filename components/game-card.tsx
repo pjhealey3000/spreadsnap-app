@@ -15,8 +15,8 @@ interface GameCardProps {
 }
 
 export function GameCard({ game, threshold, isWatchlisted, onToggleWatchlist }: GameCardProps) {
-  const homeTeam = getTeamInfo(game.home_team, game.sport)
-  const awayTeam = getTeamInfo(game.away_team, game.sport)
+  const homeTeam = getTeamInfo(game.home_team)
+  const awayTeam = getTeamInfo(game.away_team)
   
   const deviation = calculateDeviation(game.opening_spread, game.current_home_score, game.current_away_score)
   const alertInfo = isFavoriteLosingBadly(game.opening_spread, game.current_home_score, game.current_away_score, threshold)
